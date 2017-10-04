@@ -1,0 +1,40 @@
+{% extends 'layout.twig' %}
+
+{% block title 'Categories - Admin' %}
+
+{% block main %}
+    <h1>Manage categories</h1>
+
+    <p>
+        <a href="/admin/categories/create" class="btn btn-primary">Add a new category</a>
+        <a href="/admin/posts/create" class="btn btn-link">Or a new post</a>
+    </p>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Publication date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>{{ category.created }}</td>
+                <td>
+                    <a href="/admin/categories/edit/{{ category.id }}" class="btn btn-primary">Edit</a>
+                    <a href="/admin/categories/delete/{{ category.id }}?_csrf={{ csrf_token() }}" class="btn btn-danger" onclick="return confirm('Are you sure ?')">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+    {{ paginate(pagination, '/admin/categories') }}
+{% endblock %}
