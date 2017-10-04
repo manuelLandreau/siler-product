@@ -22,7 +22,7 @@ $twig->addFunction(new Twig_SimpleFunction('csrf_token', function () {
     return Container\get('csrf-token');
 }));
 $twig->addFunction(new Twig_SimpleFunction('env_prefix', function () {
-    return getenv('NODE_ENV') == 'prod' ? '/public' : '';
+    return getenv('NODE_ENV') == 'prod' ? '/public' : 'test';
 }));
 $twig->addFunction(new Twig_SimpleFunction('csrf_field', function () {
     echo '<input type="hidden" name="_csrf" value="' . Container\get('csrf-token') . '">';
