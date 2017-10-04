@@ -1,0 +1,18 @@
+<article class="row">
+    <div class="col-md-12">
+        <h2><a href="/{{ post.slug }}">{{ post.name }}</a></h2>
+        <div class="col-md-4" style="padding: 10px;">
+            <img width="150" src="{{ post.large_image_url }}" alt=""/>
+        </div>
+        <div class="col-md-8">
+            <p>
+                <small>
+                    Catégorie : <a href="/category/{{ post.category.slug }}">{{ post.category.name }}</a>
+                </small>
+            </p>
+            <p>{{ str_words(post.content, 100) | raw }}...</p>
+            <p>{{ post.price }}</p>
+            <p class="text-right"><a href="/{{ post.slug }}" class="btn btn-primary">Voir l'article</a></p>
+        </div>
+    </div>
+</article>

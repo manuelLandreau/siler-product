@@ -1,0 +1,81 @@
+{% extends 'layout.twig' %}
+
+{% block title 'Create post - Admin' %}
+
+{% block main %}
+    <h1>Create post</h1>
+
+    <p><a href="/admin">< Back to posts</a></p>
+
+    <form action="/admin/posts/create" id="PostAdminCreateForm" method="post" accept-charset="utf-8">
+        {{ csrf_field() }}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group required {{ validationErrors.has('data.Post.asin') ? 'has-error': '' }}">
+                    <label for="PostAsin">ASIN Number :</label>
+                    <input name="data[Post][asin]" class="form-control" maxlength="255" type="text"
+                           value="{{ old('data.Post.asin') }}" id="PostAsin">
+                    {% if validationErrors.has('data.Post.asin') %}
+                        <div class="help-block">{{ validationErrors.first('data.Post.asin') }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group required {{ validationErrors.has('data.Post.slug') ? 'has-error': '' }}">
+                    <label for="PostSlug">Slug :</label>
+                    <input name="data[Post][slug]" class="form-control" maxlength="255" type="text"
+                           value="{{ old('data.Post.slug') }}" id="PostSlug">
+                    {% if validationErrors.has('data.Post.slug') %}
+                        <div class="help-block">{{ validationErrors.first('data.Post.slug') }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group required {{ validationErrors.has('data.Post.amazon_url') ? 'has-error': '' }}">
+                    <label for="PostAmazonUrl">Amazon Url :</label>
+                    <input name="data[Post][amazon_url]" class="form-control" maxlength="255" type="text"
+                           value="{{ old('data.Post.amazon_url') }}" id="PostAmazonUrl">
+                    {% if validationErrors.has('data.Post.amazon_url') %}
+                        <div class="help-block">{{ validationErrors.first('data.Post.amazon_url') }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group {{ validationErrors.has('data.Post.category_id') ? 'has-error': '' }}">
+                    <label for="PostCategoryId">Category :</label>
+                    <select name="data[Post][category_id]" class="form-control" id="PostCategoryId">
+                        {% for category in categories %}
+                            <option value="{{ category.id }}" {{ old('data.Post.category_id') == category.id ? 'selected' }}>{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if validationErrors.has('data.Post.category_id') %}
+                        <div class="help-block">{{ validationErrors.first('data.Post.category_id') }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group {{ validationErrors.has('data.Post.user_id') ? 'has-error': '' }}">
+                    <label for="PostUserId">Author :</label>
+                    <select name="data[Post][user_id]" class="form-control" id="PostUserId">
+                        {% for user in users %}
+                            <option value="{{ user.id }}" {{ old('data.Post.user_id') == user.id ? 'selected' }}>{{ user.username }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if validationErrors.has('data.Post.user_id') %}
+                        <div class="help-block">{{ validationErrors.first('data.Post.user_id') }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="submit">
+            <input class="btn btn-primary" type="submit" value="Create">
+        </div>
+    </form>
+
+{% endblock %}

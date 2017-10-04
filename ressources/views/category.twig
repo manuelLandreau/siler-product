@@ -1,0 +1,19 @@
+{% extends 'layout.twig' %}
+
+{% block title 'Category ' ~ category.name %}
+
+{% block content %}
+
+    <div class="page-header">
+        <h1>Blog - {{ block('title') }}</h1>
+        <p class="lead">Tout les articles dans la categorie {{ category.name }}</p>
+    </div>
+
+    {% for post in posts %}
+        {% include 'fragments/post_preview.twig' %}
+        <hr>
+    {% endfor %}
+
+    {{ paginate(pagination, '/category/' ~ category.slug) }}
+
+{% endblock %}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sac à dos, femme, homme, cuire, insolite">
+    <meta name="author" content="zenbackback.com">
+
+    <title>{% block title %}{% endblock %} | zenbackback.com</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://bootswatch.com/cosmo/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    {% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img src="/icons/backpack.svg"/> <span class="logo">ZEN<span style="color: #000;">BACKPACK</span></span></a>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-ex1-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    {% if user %}
+                        <li><a href="/admin">Admin (logged as {{ user.username }})</a></li>
+                        <li><a href="/logout?_csrf={{ csrf_token() }}">Logout</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+        </div><!-- /.container -->
+    </div>
+
+    <div class="container-fluid" style="background-color: #f5f5f5; margin-top: -3px; padding: 30px 0;">
+        <div class="container">
+            <div class="pageheader">
+                {% block pageheader %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        {% if errorAlert %}
+            <div class="alert alert-danger">{{ errorAlert }}</div>
+        {% endif %}
+        {% if successAlert %}
+            <div class="alert alert-success">{{ successAlert }}</div>
+        {% endif %}
+
+        {% block main %}
+            <div class="row">
+                <div class="col-md-8">
+                    {% block content %}{% endblock %}
+                </div>
+
+                <div class="col-md-4 sidebar">
+
+                    <h4>Catégories</h4>
+                    <div class="list-group">
+                        {% for category in categories %}
+                            <a href="/category/{{ category.slug }}" class="list-group-item">
+                                <span class="badge">{{ category.post_count }}</span>
+                                {{ category.name }}
+                            </a>
+                        {% endfor %}
+                    </div>
+
+                    <h4>Dernièrs articles</h4>
+                    <div class="list-group">
+                        {% for post in last_posts %}
+                            <div class="row mb10px">
+                                <a href="/{{ post.slug }}">
+                                    <div class="col-md-2">
+                                        <img height="50" src="{{ post.small_image_url }}" alt=""/>
+                                    </div>
+                                    <div class="col-md-10">
+                                        {{ post.name }}
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div><!-- /.sidebar -->
+            </div>
+        {% endblock %}
+
+        <footer class="container-fluid">
+            <p>ZENBACKBACK &copy; 2017</p>
+            <p>Icons made by <a href="https://www.flaticon.com/authors/roundicons-freebies" title="Roundicons Freebies">Roundicons Freebies</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
+        </footer><!-- /.footer -->
+
+    </div><!-- /.container -->
+
+    {% block javascripts %}{% endblock %}
+
+</body>
+</html>

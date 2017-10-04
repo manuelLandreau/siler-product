@@ -1,0 +1,39 @@
+{% extends 'layout.twig' %}
+
+{% block title 'Create a category - Admin' %}
+
+{% block main %}
+    <h1>Create a category</h1>
+
+    <p><a href="/admin">< Back to Categories</a></p>
+
+    <form action="/admin/categories/create" id="CategoryAdminCreateForm" method="post" accept-charset="utf-8">
+        {{ csrf_field() }}
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group required {{ validationErrors.has('data.Category.name') ? 'has-error': '' }}">
+                    <label for="CategoryName">Name :</label>
+                    <input name="data[Category][name]" class="form-control" maxlength="255" type="text"
+                           value="{{ old('data.Category.name') }}" id="CategoryName" required="required">
+                    {% if validationErrors.has('data.Category.name') %}
+                        <div class="help-block">{{ validationErrors.first('data.Category.name') }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group required {{ validationErrors.has('data.Category.slug') ? 'has-error': '' }}">
+                    <label for="CategorySlug">Slug :</label>
+                    <input name="data[Category][slug]" class="form-control" maxlength="255" type="text"
+                           value="{{ old('data.Category.slug') }}" id="CategorySlug">
+                    {% if validationErrors.has('data.Category.slug') %}
+                        <div class="help-block">{{ validationErrors.first('data.Category.slug') }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="submit">
+            <input class="btn btn-primary" type="submit" value="Create">
+        </div>
+    </form>
+
+{% endblock %}

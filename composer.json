@@ -1,0 +1,41 @@
+{
+    "name": "siler/project",
+    "description": "Project's description",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\Models\\": "app/models",
+            "App\\Services\\": "app/services"
+        }
+    },
+    "require": {
+        "amstaffix/pagination": "^1.1",
+        "illuminate/database": "^5.4",
+        "illuminate/events": "^5.4",
+        "illuminate/pagination": "^5.4",
+        "illuminate/support": "^5.4",
+        "kocal/validator": "^0.1.0",
+        "leocavalcante/siler": "dev-master",
+        "twig/twig": "v1.34.4",
+        "symfony/var-dumper": "^3.3",
+        "exeu/apai-io": "^2.1",
+        "vlucas/phpdotenv": "^2.4"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "^1.6",
+        "robmorgan/phinx": "^0.8.1"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "",
+            "email": ""
+        }
+    ],
+    "minimum-stability": "stable",
+    "scripts": {
+        "serve": "COMPOSER_PROCESS_TIMEOUT=0 php -S 0.0.0.0:8000 -t public -d display_errors=1",
+        "migrate": "phinx migrate",
+        "seed": "phinx seed:run -s UserSeeder -s CategorySeeder"
+    }
+}

@@ -1,0 +1,62 @@
+{% extends 'layout.twig' %}
+
+{% block title -%}
+    {{ post.name }}
+{%- endblock %}
+
+{% block pageheader %}
+    <a href="/" class="lead">Retour à la liste</a>
+{% endblock %}
+
+{% block stylesheets -%}
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+{%- endblock %}
+
+{% block content %}
+    <div class="page-header">
+        <h1>{{ post.name }}</h1>
+        <p>
+            <small>
+                Categorie : <a href="/category/{{ post.category.slug }}">{{ post.category.name }}</a>
+            </small>
+        </p>
+    </div>
+
+    <article class="row">
+        <div class="col-md-4">
+            <div>
+                <img width="200" id="img-responsive" src="{{ post.large_image_url }}" alt="">
+            </div>
+            {% for i, image_url in post.image_set_array %}
+                <div class="thumbnail" style="display: inline-block;width: 30%">
+                    <img class="img-thumb" style="cursor: pointer;"
+                         src="{{ image_url }}"
+                         data-urllarge="{{ post.image_set_large_array[i] }}" alt=""/>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-8">
+            {{ post.price }}<br/>
+            {{ post.content | raw }}
+                <a href="{{ post.amazon_url }}" class="btn btn-amazon right mt20px"><i class="fa fa-amazon" aria-hidden="true"></i>  Commander sur Amazon</a>
+        </div>
+    </article>
+    <hr/>
+    <div class="row">
+        <ul>
+            {{ post.details | raw }}
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script defer="defer">
+        var thumbPicture = document.getElementsByClassName('img-thumb');
+        for (var i = 0; i < thumbPicture.length; i++) {
+            thumbPicture[i].addEventListener('click', function () {
+                document.getElementById('img-responsive').setAttribute('src', this.getAttribute('data-urllarge'));
+            }, false);
+        }
+</script>
+{% endblock %}

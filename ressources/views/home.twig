@@ -1,0 +1,25 @@
+{% extends 'layout.twig' %}
+
+{% block title 'Accueil' %}
+
+{% block pageheader %}
+    <p class="lead">Bienvenue</p>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        h2 {
+            font-weight: 400;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    {% for post in posts %}
+        {% include 'fragments/post_preview.twig' %}
+        <hr/>
+    {% endfor %}
+
+    {{ paginate(pagination) }}
+{% endblock %}
