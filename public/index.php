@@ -14,8 +14,12 @@ Route\get('/admin/posts/edit/{id}', PATH_CONTROLLERS . '/admin/posts/edit.get.ph
 Route\post('/admin/posts/edit/{id}', PATH_CONTROLLERS . '/admin/posts/edit.post.php');
 Route\get('/admin/posts/delete/{id}', PATH_CONTROLLERS . '/admin/posts/delete.get.php');
 
+Route\get('/admin/categories', PATH_CONTROLLERS . '/admin/categories.get.php');
 Route\get('/admin/categories/create', PATH_CONTROLLERS . '/admin/categories/create.get.php');
 Route\post('/admin/categories/create', PATH_CONTROLLERS . '/admin/categories/create.post.php');
+Route\get('/admin/categories/edit/{id}', PATH_CONTROLLERS . '/admin/categories/edit.get.php');
+Route\post('/admin/categories/edit/{id}', PATH_CONTROLLERS . '/admin/categories/edit.post.php');
+Route\get('/admin/categories/delete/{id}', PATH_CONTROLLERS . '/admin/categories/delete.get.php');
 
 Route\get('/login', PATH_CONTROLLERS . '/login.get.php');
 Route\post('/login', PATH_CONTROLLERS . '/login.post.php');
