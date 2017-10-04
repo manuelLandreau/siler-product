@@ -20,6 +20,8 @@ $twig->addFunction(new Twig_SimpleFunction('md5', 'md5'));
 $twig->addFunction(new Twig_SimpleFunction('str_words', '\Illuminate\Support\Str::words'));
 $twig->addFunction(new Twig_SimpleFunction('csrf_token', function () {
     return Container\get('csrf-token');
+}));$twig->addFunction(new Twig_SimpleFunction('env_prefix', function () {
+    return getenv('NODE_ENV') == 'prod' ? '/public' : '';
 }));
 $twig->addFunction(new Twig_SimpleFunction('csrf_field', function () {
     echo '<input type="hidden" name="_csrf" value="' . Container\get('csrf-token') . '">';
