@@ -17,7 +17,7 @@ class UserSeeder extends AbstractSeed
     {
         User::create([
             'username' => getenv('USERNAME'),
-            'password' => password_hash(geten('PASSWORD'), PASSWORD_BCRYPT),
+            'password' => password_hash(getenv('PASSWORD'), PASSWORD_BCRYPT),
         ]);
     }
 }
