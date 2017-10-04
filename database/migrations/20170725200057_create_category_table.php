@@ -30,6 +30,7 @@ class CreateCategoryTable extends AbstractMigration
         $table = $this->table('categories');
         $table->addColumn('name', 'string');
         $table->addColumn('slug', 'string');
+        $table->addColumn('created', 'datetime');
         $table->addColumn('post_count', 'integer');
 
         $table->create();
