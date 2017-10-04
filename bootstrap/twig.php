@@ -21,9 +21,6 @@ $twig->addFunction(new Twig_SimpleFunction('str_words', '\Illuminate\Support\Str
 $twig->addFunction(new Twig_SimpleFunction('csrf_token', function () {
     return Container\get('csrf-token');
 }));
-$twig->addFunction(new Twig_SimpleFunction('env_prefix', function () {
-    return getenv('NODE_ENV') == 'prod' ? '/public' : 'test';
-}));
 $twig->addFunction(new Twig_SimpleFunction('csrf_field', function () {
     echo '<input type="hidden" name="_csrf" value="' . Container\get('csrf-token') . '">';
 }));
@@ -62,7 +59,7 @@ $twig->addFunction(new Twig_SimpleFunction('paginate', function (Pagination $pag
     echo implode('', $output);
 }));
 
-
+$twig->addGlobal('env_prefix', getenv('NODE_ENV') === 'prod' ? '/public' : '');
 $twig->addGlobal('user', session('user'));
 $twig->addGlobal('errorAlert', flash('errorAlert'));
 $twig->addGlobal('successAlert', flash('successAlert'));

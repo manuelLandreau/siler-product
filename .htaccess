@@ -1,4 +1,3 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ public/index.php
-RewriteRule ^/css/(.*)$ public/css [L]
+RewriteRule ^ public/index.php [L]
