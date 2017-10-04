@@ -10,4 +10,3 @@ database/database.sqlite
 /.env
 /.idea
 /composer.lock
-/.htaccess

@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ public/index.php [L]
+
+SetEnv NODE_ENV="dev"
+SetEnv AccessKey="AKIAI3JPSJQ6AEKL4VDQ"
+SetEnv SecretKey="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"
+SetEnv AssociateTag="zenzentai-21"
+SetEnv DB_USERNAME="admin"
+SetEnv DB_PASSWORD="admin"
