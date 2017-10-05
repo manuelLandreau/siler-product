@@ -1,10 +1,10 @@
-RewriteEngine On
+#RewriteEngine On
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^ public/index.php [L]
+# HTTPD mod_rewrite required
+RewriteEngine on
+# If file/directory's present, serving it directly
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ public/index.php [L]
-
-SetEnv NODE_ENV="dev"
-SetEnv AccessKey="AKIAI3JPSJQ6AEKL4VDQ"
-SetEnv SecretKey="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"
-SetEnv AssociateTag="zenzentai-21"
-SetEnv DB_USERNAME="admin"
-SetEnv DB_PASSWORD="admin"
+RewriteCond %{REQUEST_FILENAME} !-d
+# Else, redirecting the request to the index.php file
+RewriteRule . index.php

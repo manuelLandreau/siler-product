@@ -9,7 +9,7 @@ use function Siler\Http\flash;
 use function Siler\Http\session;
 
 $twig = Twig\init(
-    __DIR__ . '/../ressources/views',
+    __DIR__ . '/../resources/views',
     __DIR__ . '/../cache',
     getenv('NODE_ENV') == 'dev'
 );

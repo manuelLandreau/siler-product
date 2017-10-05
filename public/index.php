@@ -28,3 +28,5 @@ Route\get('/logout', PATH_CONTROLLERS . '/logout.get.php');
 Route\get('/category/{slug}', PATH_CONTROLLERS . '/categories.get.php');
 Route\get('/{slug}', PATH_CONTROLLERS . '/post.get.php');
 Route\get('/', PATH_CONTROLLERS . '/home.get.php');
+
+

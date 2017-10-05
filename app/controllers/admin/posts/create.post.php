@@ -53,6 +53,8 @@ if ($validator->fails()) {
         'image_set_large' => $AWSArticle['image_set_large'],
     ]);
     setsession('requestData', null);
+    require_once __DIR__ . '/../../../services/sitemapGenerator.php';
+
     setsession('successAlert', "Post {$post->id} has been successfully created.");
     redirect('/admin');
 }
